@@ -1,0 +1,183 @@
+
+<!-- src/app/features/leads/lead-assignment/lead-assignment.component.html -->
+<div class="assignment-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1> Assign Leads to Sales Team</h1>
+      <p>Select leads and assign them to sales team members</p>
+    </div>
+    <button class="btn-back" (click)="onCancel()">
+      <span>Cancel</span>
+    </button>
+  </div>
+
+  <div class="assignment-layout">
+    <!-- Left Side - Lead Selection -->
+    <div class="leads-selection-section">
+      <div class="section-card">
+        <div class="section-header">
+          <h3> Select Leads to Assign</h3>
+          <label class="select-all-checkbox">
+            <input 
+              type="checkbox" 
+              [checked]="selectAll"
+              (change)="toggleSelectAll()"
+            />
+            <span>Select All</span>
+          </label>
+        </div>
+
+        <div class="leads-list">
+          <div 
+            class="lead-item" 
+            *ngFor="let lead of leads"
+            [class.selected]="lead.selected"
+            (click)="toggleLeadSelection(lead)"
+          >
+            <input 
+              type="checkbox" 
+              [checked]="lead.selected"
+              (click)="$event.stopPropagation()"
+              (change)="toggleLeadSelection(lead)"
+            />
+            <div class="lead-info">
+              <div class="lead-name">{{ lead.name }}</div>
+              <div class="lead-details">
+                <span class="lead-id">{{ lead.id }}</span>
+                <span class="separator">•</span>
+                <span class="lead-source">{{ lead.source }}</span>
+              </div>
+            </div>
+            <div class="lead-contact">
+              <div class="contact-item">
+                <span>{{ lead.email }}</span>
+              </div>
+              <div class="contact-item">
+                <span>{{ lead.phone }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" *ngIf="leads.length === 0">
+            <p>No unassigned leads available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Assignment Form -->
+    <div class="assignment-form-section">
+      <!-- Selected Leads Summary -->
+      <div class="section-card selected-summary">
+        <div class="summary-header">
+          <h3> Selected Leads</h3>
+          <span class="count-badge">{{ selectedCount }}</span>
+        </div>
+
+        <div class="selected-leads-list" *ngIf="selectedCount > 0">
+          <div class="selected-lead-tag" *ngFor="let lead of selectedLeads">
+            <span class="lead-name">{{ lead.name }}</span>
+            <button 
+              class="remove-btn" 
+              (click)="removeSelectedLead(lead.id)"
+              title="Remove"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+
+        <div class="no-selection" *ngIf="selectedCount === 0">
+          <p>Select leads from the list to assign them</p>
+        </div>
+      </div>
+
+      <!-- Assignment Form -->
+      <div class="section-card assignment-form">
+        <h3 class="form-title"> Assignment Details</h3>
+
+        <form [formGroup]="assignmentForm" (ngSubmit)="onSubmit()">
+          <!-- Sales Person Selection -->
+          <div class="form-group">
+            <label for="salesPerson">
+              Assign to Sales Person <span class="required">*</span>
+            </label>
+            <select 
+              id="salesPerson" 
+              formControlName="salesPerson"
+              class="form-select"
+            >
+              <option value="">Select sales person...</option>
+              <option *ngFor="let person of salesPersons" [value]="person.id">
+                {{ person.name }} ({{ person.activeLeads }} active leads)
+              </option>
+            </select>
+            <button 
+              type="button" 
+              class="btn-auto-assign"
+              (click)="autoAssign()"
+              [disabled]="selectedCount === 0"
+            >
+              <span>Auto-assign to least busy</span>
+            </button>
+          </div>
+
+          <!-- Sales Team Cards -->
+          <div class="sales-team-grid">
+            <div 
+              class="sales-person-card"
+              *ngFor="let person of salesPersons"
+              [class.active]="assignmentForm.get('salesPerson')?.value === person.id"
+              (click)="assignmentForm.patchValue({salesPerson: person.id})"
+            >
+              <div class="person-avatar">
+                {{ person.name.charAt(0) }}
+              </div>
+              <div class="person-info">
+                <div class="person-name">{{ person.name }}</div>
+                <div class="person-email">{{ person.email }}</div>
+              </div>
+              <div class="person-stats">
+                <span>{{ person.activeLeads }} leads</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Assignment Notes -->
+          <div class="form-group">
+            <label for="notes">
+              Assignment Notes (Optional)
+            </label>
+            <textarea
+              id="notes"
+              formControlName="notes"
+              rows="4"
+              placeholder="Add notes for the assigned sales person..."
+              class="form-textarea"
+            ></textarea>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button 
+              type="submit" 
+              class="btn-primary"
+              [disabled]="selectedCount === 0"
+            >
+              <span>Assign {{ selectedCount > 0 ? selectedCount : '' }} Lead{{ selectedCount !== 1 ? 's' : '' }}</span>
+            </button>
+            <button 
+              type="button" 
+              class="btn-secondary" 
+              (click)="onCancel()"
+            >
+              <span>Cancel</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

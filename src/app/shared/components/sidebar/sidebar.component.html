@@ -1,0 +1,45 @@
+<!-- src/app/shared/components/sidebar/sidebar.component.html -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <img 
+        [src]="currentLogo" 
+        alt="Capricorn CRM Logo" 
+        class="sidebar-logo"
+        (error)="currentLogo = 'assets/images/logo1.png'"
+      >
+    </div>
+    <h3 class="brand-name">Capricorn CRM</h3>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <div *ngFor="let section of menuSections" class="nav-section">
+      <h4 class="section-title">{{ section.title }}</h4>
+      <a 
+        *ngFor="let item of section.items" 
+        [routerLink]="item.route" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: false}"
+        class="nav-item"
+      >
+        <i class="fas {{ item.icon }} nav-icon"></i>
+        <span class="nav-label">{{ item.label }}</span>
+      </a>
+    </div>
+  </nav>
+  
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="user-details">
+        <p class="user-name">Asin Iqbal</p>
+        <p class="user-role">Admin</p>
+      </div>
+    </div>
+    <button class="logout-btn" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+</div>

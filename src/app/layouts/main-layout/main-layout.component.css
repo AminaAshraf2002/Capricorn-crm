@@ -1,0 +1,37 @@
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+.main-container {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  min-height: calc(100vh - 70px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main-container {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    margin-left: 80px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}

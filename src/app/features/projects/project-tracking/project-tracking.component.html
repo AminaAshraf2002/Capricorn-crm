@@ -1,0 +1,265 @@
+<!-- src/app/features/projects/project-tracking/project-tracking.component.html -->
+<div class="tracking-container">
+  
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <button class="btn-back" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div>
+        <h1>{{ project.name }}</h1>
+        <p class="project-code">{{ project.projectCode }}</p>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <span 
+        class="status-badge" 
+        [style.background]="getStatusColor(project.status) + '33'"
+        [style.border-color]="getStatusColor(project.status)"
+        [style.color]="getStatusColor(project.status)"
+      >
+        <i class="fas" [ngClass]="getStatusIcon(project.status)"></i>
+        <span>{{ project.status | titlecase }}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Project Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon customer">
+        <i class="fas fa-building"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Customer</div>
+        <div class="stat-value">{{ project.customer }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon value">
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Project Value</div>
+        <div class="stat-value">{{ formatCurrency(project.value) }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon leader">
+        <i class="fas fa-user-tie"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Team Leader</div>
+        <div class="stat-value">{{ project.teamLeader }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon date">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Expected Completion</div>
+        <div class="stat-value">{{ formatDate(project.expectedCompletion) }}</div>
+        <div class="stat-sublabel">{{ getDaysRemaining() }} days remaining</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="content-grid">
+    
+    <!-- Left Column -->
+    <div class="left-column">
+      
+      <!-- Progress Card -->
+      <div class="progress-card">
+        <h3 class="card-title">
+          <i class="fas fa-chart-line"></i>
+          <span>Installation Progress</span>
+        </h3>
+        
+        <div class="progress-circle">
+          <svg viewBox="0 0 100 100">
+            <circle 
+              cx="50" 
+              cy="50" 
+              r="45" 
+              fill="none" 
+              stroke="rgba(255,255,255,0.1)" 
+              stroke-width="8"
+            />
+            <circle 
+              cx="50" 
+              cy="50" 
+              r="45" 
+              fill="none" 
+              [attr.stroke]="getProgressColor()"
+              stroke-width="8"
+              stroke-linecap="round"
+              [attr.stroke-dasharray]="2 * Math.PI * 45"
+              [attr.stroke-dashoffset]="2 * Math.PI * 45 * (1 - project.progress / 100)"
+              transform="rotate(-90 50 50)"
+            />
+          </svg>
+          <div class="progress-text">
+            <div class="progress-percentage">{{ project.progress }}%</div>
+            <div class="progress-label">Complete</div>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-bg">
+            <div 
+              class="progress-bar-fill"
+              [style.width.%]="project.progress"
+              [style.background]="getProgressColor()"
+            ></div>
+          </div>
+        </div>
+
+        <div class="milestones-summary">
+          <i class="fas fa-tasks"></i>
+          <span>{{ getCompletedMilestones() }} of {{ getTotalMilestones() }} milestones completed</span>
+        </div>
+      </div>
+
+      <!-- Project Details Card -->
+      <div class="details-card">
+        <h3 class="card-title">
+          <i class="fas fa-info-circle"></i>
+          <span>Project Details</span>
+        </h3>
+        
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="detail-label">Elevator Type</div>
+            <div class="detail-value">
+              <i class="fas fa-elevator"></i>
+              <span>{{ project.elevatorType }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">Start Date</div>
+            <div class="detail-value">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{{ formatDate(project.startDate) }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item full-width">
+            <div class="detail-label">Site Address</div>
+            <div class="detail-value">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{{ project.siteAddress }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Members Card -->
+      <div class="team-card">
+        <h3 class="card-title">
+          <i class="fas fa-users"></i>
+          <span>Team Members</span>
+        </h3>
+        
+        <div class="team-list">
+          <div 
+            *ngFor="let member of teamMembers" 
+            class="team-member-item"
+          >
+            <div class="member-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="member-info">
+              <div class="member-name">{{ member.name }}</div>
+              <div class="member-role">{{ member.role }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      
+      <!-- Milestones Card -->
+      <div class="milestones-card">
+        <h3 class="card-title">
+          <i class="fas fa-flag-checkered"></i>
+          <span>Project Milestones</span>
+        </h3>
+        
+        <div class="milestones-timeline">
+          <div 
+            *ngFor="let milestone of milestones; let last = last"
+            class="milestone-item"
+            [class.completed]="milestone.status === 'completed'"
+            [class.in-progress]="milestone.status === 'in-progress'"
+            [class.pending]="milestone.status === 'pending'"
+          >
+            <div class="milestone-connector" *ngIf="!last"></div>
+            
+            <div class="milestone-icon">
+              <i class="fas" [ngClass]="milestone.icon"></i>
+            </div>
+            
+            <div class="milestone-content">
+              <div class="milestone-header">
+                <h4 class="milestone-title">{{ milestone.title }}</h4>
+                <div class="milestone-status-icon">
+                  <i class="fas" [ngClass]="getMilestoneIcon(milestone.status)"></i>
+                </div>
+              </div>
+              
+              <div class="milestone-date" *ngIf="milestone.status === 'completed'">
+                <i class="fas fa-check"></i>
+                <span>Completed on {{ formatDate(milestone.completedDate!) }}</span>
+              </div>
+              
+              <div class="milestone-date" *ngIf="milestone.status === 'in-progress'">
+                <i class="fas fa-clock"></i>
+                <span>In Progress - Expected: {{ formatDate(milestone.expectedDate) }}</span>
+              </div>
+              
+              <div class="milestone-date" *ngIf="milestone.status === 'pending'">
+                <i class="fas fa-hourglass-half"></i>
+                <span>Pending - Expected: {{ formatDate(milestone.expectedDate) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="btn-secondary" (click)="viewDocuments()">
+      <i class="fas fa-folder"></i>
+      <span>View Documents</span>
+    </button>
+    
+    <button class="btn-secondary" (click)="editProject()">
+      <i class="fas fa-edit"></i>
+      <span>Edit Project</span>
+    </button>
+    
+    <button class="btn-primary" (click)="updateStatus()">
+      <i class="fas fa-sync"></i>
+      <span>Update Status</span>
+    </button>
+    
+    <button class="btn-success" (click)="markAsCompleted()" *ngIf="project.status !== 'completed'">
+      <i class="fas fa-check-circle"></i>
+      <span>Mark as Completed</span>
+    </button>
+  </div>
+
+</div>

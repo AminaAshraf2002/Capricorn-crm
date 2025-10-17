@@ -1,0 +1,121 @@
+<!-- src/app/features/leads/leads-list/leads-list.component.html -->
+<div class="leads-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1> Leads Management</h1>
+      <p>Manage and track all your sales leads</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-secondary" (click)="assignLeads()">
+        <i class="fas fa-user-plus"></i>
+        <span>Assign Leads</span>
+      </button>
+      <button class="btn-primary" (click)="addNewLead()">
+        <i class="fas fa-plus"></i>
+        <span>Add Lead</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters & Search Section -->
+  <div class="filters-section">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        placeholder="Search leads by name, email, phone..." 
+        [(ngModel)]="searchTerm"
+        (input)="filterLeads()"
+      />
+    </div>
+
+    <div class="filter-controls">
+      <select [(ngModel)]="statusFilter" (change)="filterLeads()" class="filter-select">
+        <option value="">All Status</option>
+        <option value="new">New</option>
+        <option value="qualified">Qualified</option>
+        <option value="quoted">Quoted</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+      </select>
+
+      <select [(ngModel)]="sourceFilter" (change)="filterLeads()" class="filter-select">
+        <option value="">All Sources</option>
+        <option value="Website">Website</option>
+        <option value="Walk-in">Walk-in</option>
+        <option value="Reference">Reference</option>
+        <option value="Phone">Phone Call</option>
+      </select>
+
+      <button class="btn-secondary" (click)="importLeads()">
+        <i class="fas fa-file-import"></i>
+        <span>Import</span>
+      </button>
+
+      <button class="btn-secondary" (click)="exportLeads()">
+        <i class="fas fa-file-export"></i>
+        <span>Export</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Leads Table -->
+  <div class="table-card">
+    <div class="table-container">
+      <table class="leads-table">
+        <thead>
+          <tr>
+            <th>Lead ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Company</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lead of filteredLeads" class="table-row">
+            <td class="lead-id">{{ lead.id }}</td>
+            <td class="lead-name">{{ lead.name }}</td>
+            <td>{{ lead.email }}</td>
+            <td>{{ lead.phone }}</td>
+            <td>{{ lead.company || '-' }}</td>
+            <td>
+              <span class="source-badge">{{ lead.source }}</span>
+            </td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(lead.status)">
+                {{ getStatusLabel(lead.status) }}
+              </span>
+            </td>
+            <td>{{ lead.assignedTo }}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="action-btn btn-view" (click)="viewLead(lead.id)" title="View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn btn-edit" (click)="editLead(lead.id)" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn btn-delete" (click)="deleteLead(lead.id)" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Empty State -->
+      <div *ngIf="filteredLeads.length === 0" class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <h3>No leads found</h3>
+        <p>Try adjusting your search or filters</p>
+      </div>
+    </div>
+  </div>
+</div>
