@@ -23,7 +23,6 @@
 }
 
 .header-left p {
-  color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -79,7 +78,6 @@
 
 /* Filters Section */
 .filters-section {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(0, 0, 0, 0.8));
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 15px;
   padding: 20px;
@@ -209,7 +207,6 @@
 
 .leads-table td {
   padding: 18px 12px;
-  color: rgba(255, 255, 255, 0.8);
   font-size: 0.85rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -225,7 +222,6 @@
 
 .lead-name {
   font-weight: 600;
-  color: #fff;
 }
 
 /* Status Badges */

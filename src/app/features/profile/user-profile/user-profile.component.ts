@@ -15,7 +15,7 @@ export class UserProfileComponent {
     fullName: 'John Doe',
     email: 'john@inspitetech.com',
     phone: '+91 8714158735',
-    role: 'Sales Manager',
+    role: 'Manager',
     department: 'Sales',
     location: 'Kochi, Kerala',
     bio: 'Experienced sales professional with 5+ years in CRM and customer relationship management.',

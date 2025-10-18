@@ -12,7 +12,6 @@
 
 .btn-back {
   background: transparent;
-  color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(212, 179, 71, 0.3);
   padding: 10px 20px;
   border-radius: 8px;
@@ -33,7 +32,6 @@
 
 /* Lead Header */
 .lead-header {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(0, 0, 0, 0.8));
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 15px;
   padding: 30px;
@@ -164,7 +162,6 @@
 
 /* Details Section */
 .details-section {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(0, 0, 0, 0.8));
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 15px;
   padding: 30px;
@@ -230,7 +227,7 @@
 }
 
 .info-value {
-  color: #fff;
+  
   font-size: 1rem;
   font-weight: 600;
 }
@@ -258,7 +255,6 @@
 
 /* Timeline Section */
 .timeline-section {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(0, 0, 0, 0.8));
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 15px;
   padding: 30px;
@@ -313,7 +309,6 @@
 }
 
 .timeline-content {
-  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(212, 179, 71, 0.1);
   border-radius: 12px;
   padding: 20px;
@@ -365,7 +360,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255, 255, 255, 0.5);
+ 
   font-size: 0.85rem;
 }
 

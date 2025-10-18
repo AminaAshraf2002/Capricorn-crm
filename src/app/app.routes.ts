@@ -25,6 +25,7 @@ import { QuotationPreviewComponent } from './features/quotations/quotation-previ
 // Deal Management Imports
 import { DealPipelineComponent } from './features/deals/deal-pipeline/deal-pipeline.component';
 import { DealFormComponent } from './features/deals/deal-form/deal-form.component';
+import { DealDetailComponent } from './features/deals/deal-detail/deal-detail.component';
 
 // Project Management Imports
 import { ProjectsListComponent } from './features/projects/projects-list/projects-list.component';
@@ -35,8 +36,6 @@ import { ProjectTrackingComponent } from './features/projects/project-tracking/p
 import { ReportsDashboardComponent } from './features/reports/reports-dashboard/reports-dashboard.component';
 import { CustomReportBuilderComponent } from './features/reports/custom-report-builder/custom-report-builder.component';
 import { ExportReportsComponent } from './features/reports/export-reports/export-reports.component';
-
-
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -53,43 +52,42 @@ export const routes: Routes = [
       { path: 'profile', component: UserProfileComponent },
       { path: 'settings', component: AccountSettingsComponent },
       
-      // Lead Management Routes
+      // ✅ Lead Management Routes (Correct Order)
       { path: 'leads', component: LeadsListComponent },
-      { path: 'leads/add', component: LeadFormComponent },
-      { path: 'leads/import', component: ImportLeadsComponent },
-      { path: 'leads/assign', component: LeadAssignmentComponent },
-      { path: 'leads/edit/:id', component: LeadFormComponent },
-      { path: 'leads/:id', component: LeadDetailComponent },
+      { path: 'leads/add', component: LeadFormComponent },              // Specific route first
+      { path: 'leads/import', component: ImportLeadsComponent },        // Specific route first
+      { path: 'leads/assign', component: LeadAssignmentComponent },     // Specific route first
+      { path: 'leads/edit/:id', component: LeadFormComponent },         // Dynamic route
+      { path: 'leads/:id', component: LeadDetailComponent },            // Dynamic route last
 
       // Communication & Follow-up Routes
       { path: 'activities', component: ActivityLogComponent },
       { path: 'tasks', component: TaskDashboardComponent },
       
-      // Quotation Management Routes
+      // ✅ Quotation Management Routes (FIXED ORDER)
       { path: 'quotations', component: QuotationListComponent },
-      { path: 'quotations/create', component: QuotationBuilderComponent },
-      { path: 'quotations/edit/:id', component: QuotationBuilderComponent },
-      { path: 'quotations/preview', component: QuotationPreviewComponent },
-      { path: 'quotations/preview/:id', component: QuotationPreviewComponent },
-      { path: 'quotations/:id', component: QuotationPreviewComponent },
+      { path: 'quotations/create', component: QuotationBuilderComponent },      // Specific first
+      { path: 'quotations/preview', component: QuotationPreviewComponent },     // ✅ MOVED UP
+      { path: 'quotations/edit/:id', component: QuotationBuilderComponent },    // Dynamic
+      { path: 'quotations/preview/:id', component: QuotationPreviewComponent }, // Dynamic
+      { path: 'quotations/:id', component: QuotationPreviewComponent },         // Catch-all last
       
-      // Deal Management Routes
+      // ✅ Deal Management Routes (Correct Order)
       { path: 'deals', component: DealPipelineComponent },
-      { path: 'deals/create', component: DealFormComponent },
-      { path: 'deals/edit/:id', component: DealFormComponent },
-      { path: 'deals/:id', component: DashboardHomeComponent }, // TODO: Create Deal Detail View
+      { path: 'deals/create', component: DealFormComponent },           // Specific first
+      { path: 'deals/edit/:id', component: DealFormComponent },         // Dynamic
+      { path: 'deals/:id', component: DealDetailComponent },            // Dynamic last
       
-      // Project Management Routes COMPLETE
+      // ✅ Project Management Routes (Correct Order)
       { path: 'projects', component: ProjectsListComponent },
-      { path: 'projects/create', component: ProjectConversionComponent },
-      { path: 'projects/edit/:id', component: ProjectConversionComponent },
-      { path: 'projects/:id', component: ProjectTrackingComponent },
+      { path: 'projects/create', component: ProjectConversionComponent },   // Specific first
+      { path: 'projects/edit/:id', component: ProjectConversionComponent }, // Dynamic
+      { path: 'projects/:id', component: ProjectTrackingComponent },        // Dynamic last
       
-      // ✅ Reports Routes (Phase 6 - COMPLETE)
+      // ✅ Reports Routes (Correct Order)
       { path: 'reports', component: ReportsDashboardComponent },
-      { path: 'reports/custom', component: CustomReportBuilderComponent },
-      { path: 'reports/export', component: ExportReportsComponent },
-
+      { path: 'reports/custom', component: CustomReportBuilderComponent },  // Specific first
+      { path: 'reports/export', component: ExportReportsComponent },        // Specific first
     ]
   }
 ];

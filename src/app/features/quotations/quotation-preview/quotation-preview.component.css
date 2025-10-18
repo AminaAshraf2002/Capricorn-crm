@@ -130,7 +130,7 @@
 }
 
 .company-detail {
-  color: #666;
+ 
   font-size: 0.75rem;
   margin: 2px 0;
   line-height: 1.4;
@@ -151,14 +151,13 @@
 }
 
 .quote-detail {
-  color: #666;
+  
   font-size: 0.75rem;
   margin: 4px 0;
   line-height: 1.5;
 }
 
 .quote-detail strong {
-  color: #333;
   font-weight: 600;
 }
 

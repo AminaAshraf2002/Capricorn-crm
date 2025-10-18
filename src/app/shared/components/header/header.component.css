@@ -2,8 +2,8 @@
 
 .header {
   height: 70px;
-  background: var(--header-bg, linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(0, 0, 0, 0.95)));
-  border-bottom: 1px solid var(--border-color, rgba(212, 179, 71, 0.2));
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
   padding: 0 30px;
   display: flex;
   align-items: center;
@@ -27,9 +27,9 @@
   width: 40px;
   height: 40px;
   background: rgba(212, 179, 71, 0.1);
-  border: 1px solid rgba(212, 179, 71, 0.3);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  color: #d4b347;
+  color: var(--accent-gold);
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -39,7 +39,7 @@
 
 .menu-toggle:hover {
   background: rgba(212, 179, 71, 0.2);
-  border-color: #d4b347;
+  border-color: var(--accent-gold);
 }
 
 .search-box {
@@ -53,30 +53,30 @@
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-tertiary, rgba(255, 255, 255, 0.5));
+  color: var(--text-tertiary);
   font-size: 1rem;
 }
 
 .search-box input {
   width: 100%;
   padding: 12px 15px 12px 45px;
-  background: var(--input-bg, rgba(0, 0, 0, 0.5));
-  border: 1px solid var(--border-color, rgba(212, 179, 71, 0.2));
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  color: var(--text-primary, rgba(255, 255, 255, 0.9));
+  color: var(--text-primary);
   font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
 .search-box input:focus {
   outline: none;
-  border-color: #d4b347;
-  background: var(--input-focus-bg, rgba(0, 0, 0, 0.7));
+  border-color: var(--accent-gold);
+  background: var(--input-focus-bg);
   box-shadow: 0 0 0 3px rgba(212, 179, 71, 0.1);
 }
 
 .search-box input::placeholder {
-  color: var(--text-placeholder, rgba(255, 255, 255, 0.4));
+  color: var(--text-placeholder);
 }
 
 /* Header Right */
@@ -90,9 +90,9 @@
   width: 40px;
   height: 40px;
   background: rgba(212, 179, 71, 0.1);
-  border: 1px solid rgba(212, 179, 71, 0.3);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  color: #d4b347;
+  color: var(--accent-gold);
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -103,7 +103,7 @@
 
 .header-btn:hover {
   background: rgba(212, 179, 71, 0.2);
-  border-color: #d4b347;
+  border-color: var(--accent-gold);
   transform: translateY(-2px);
 }
 
@@ -170,7 +170,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--header-bg, rgba(0, 0, 0, 0.9));
+  border: 2px solid var(--bg-secondary);
 }
 
 /* Profile Button */
@@ -195,7 +195,7 @@
 .profile-name {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-primary, rgba(255, 255, 255, 0.9));
+  color: var(--text-primary);
 }
 
 /* Dropdown */
@@ -208,10 +208,10 @@
   top: calc(100% + 10px);
   right: 0;
   width: 320px;
-  background: var(--dropdown-bg, linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(0, 0, 0, 0.95)));
-  border: 1px solid var(--border-color, rgba(212, 179, 71, 0.2));
+  background: var(--dropdown-bg);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -231,13 +231,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border-color, rgba(212, 179, 71, 0.2));
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dropdown-header h4 {
   font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
-  color: #d4b347;
+  color: var(--accent-gold);
   margin: 0;
 }
 
@@ -245,9 +245,9 @@
   font-size: 0.75rem;
   padding: 4px 10px;
   background: rgba(212, 179, 71, 0.2);
-  border: 1px solid rgba(212, 179, 71, 0.3);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  color: #d4b347;
+  color: var(--accent-gold);
   font-weight: 600;
 }
 
@@ -261,7 +261,7 @@
 }
 
 .dropdown-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--bg-tertiary);
 }
 
 .dropdown-body::-webkit-scrollbar-thumb {
@@ -274,7 +274,7 @@
   display: flex;
   gap: 12px;
   padding: 15px 20px;
-  border-bottom: 1px solid var(--border-color, rgba(212, 179, 71, 0.1));
+  border-bottom: 1px solid var(--border-color);
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -314,13 +314,13 @@
 
 .notification-text {
   font-size: 0.85rem;
-  color: var(--text-primary, rgba(255, 255, 255, 0.9));
+  color: var(--text-primary);
   margin: 0 0 5px 0;
 }
 
 .notification-time {
   font-size: 0.75rem;
-  color: var(--text-tertiary, rgba(255, 255, 255, 0.5));
+  color: var(--text-tertiary);
 }
 
 /* Profile Menu */
@@ -331,7 +331,7 @@
 .profile-info {
   padding: 25px 20px;
   text-align: center;
-  border-bottom: 1px solid var(--border-color, rgba(212, 179, 71, 0.2));
+  border-bottom: 1px solid var(--border-color);
 }
 
 .profile-avatar-large {
@@ -351,13 +351,13 @@
 .profile-info h4 {
   font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
-  color: #d4b347;
+  color: var(--accent-gold);
   margin: 0 0 5px 0;
 }
 
 .profile-info p {
   font-size: 0.85rem;
-  color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+  color: var(--text-secondary);
   margin: 0 0 10px 0;
 }
 
@@ -365,10 +365,10 @@
   display: inline-block;
   padding: 5px 12px;
   background: rgba(212, 179, 71, 0.2);
-  border: 1px solid rgba(212, 179, 71, 0.3);
+  border: 1px solid var(--border-color);
   border-radius: 15px;
   font-size: 0.75rem;
-  color: #d4b347;
+  color: var(--accent-gold);
   font-weight: 600;
 }
 
@@ -377,14 +377,14 @@
   align-items: center;
   gap: 12px;
   padding: 12px 20px;
-  color: var(--text-secondary, rgba(255, 255, 255, 0.8));
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
   background: rgba(212, 179, 71, 0.1);
-  color: #d4b347;
+  color: var(--accent-gold);
 }
 
 .dropdown-item i {
@@ -394,7 +394,7 @@
 
 .dropdown-divider {
   height: 1px;
-  background: var(--border-color, rgba(212, 179, 71, 0.2));
+  background: var(--border-color);
   margin: 10px 0;
 }
 
@@ -408,7 +408,7 @@
   justify-content: center;
   gap: 8px;
   padding: 10px;
-  color: #d4b347;
+  color: var(--accent-gold);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -416,7 +416,7 @@
 }
 
 .dropdown-footer a:hover {
-  color: #f0d482;
+  color: var(--accent-gold-light);
 }
 
 .logout-link {

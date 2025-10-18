@@ -133,7 +133,7 @@ div[class*="wrapper"],
 div[class*="content"],
 main,
 section {
-  background: var(--bg-primary) !important;
+ 
 }
 
 /* ==========================================
@@ -161,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  color: var(--text-secondary) !important;
+
 }
 
 span {
@@ -241,7 +241,7 @@ th {
 }
 
 td {
-  color: var(--text-secondary) !important;
+  
   border-color: var(--border-color) !important;
   padding: 12px 15px;
 }

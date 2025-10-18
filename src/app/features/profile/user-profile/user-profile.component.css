@@ -22,7 +22,7 @@
 }
 
 .header-left p {
-  color: rgba(255, 255, 255, 0.6);
+ 
   font-size: .9rem;
   margin: 0;
 }
@@ -127,14 +127,13 @@
 }
 
 .user-role {
-  color: rgba(255, 255, 255, 0.6);
+ 
   font-size: 0.8rem;
   margin: 0;
 }
 
 /* Profile Navigation */
 .profile-nav {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(0, 0, 0, 0.8));
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 15px;
   padding: 15px;
@@ -148,7 +147,7 @@
   align-items: center;
   gap: 12px;
   padding: 14px 15px;
-  color: rgba(255, 255, 255, 0.7);
+ 
   text-decoration: none;
   border-radius: 10px;
   transition: all 0.3s ease;
@@ -192,7 +191,6 @@
 
 /* Profile Content */
 .profile-content {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(0, 0, 0, 0.8));
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 15px;
   padding: 40px;
@@ -309,7 +307,6 @@
 
 /* Password Requirements */
 .password-requirements {
-  background: rgba(212, 179, 71, 0.05);
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 10px;
   padding: 20px;
@@ -336,7 +333,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
 }
 
@@ -421,7 +417,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(212, 179, 71, 0.2);
   border-radius: 10px;
   transition: all 0.3s ease;
@@ -459,7 +454,6 @@
 }
 
 .notification-info p {
-  color: rgba(255, 255, 255, 0.5);
   font-size: 0.85rem;
   margin: 0;
 }

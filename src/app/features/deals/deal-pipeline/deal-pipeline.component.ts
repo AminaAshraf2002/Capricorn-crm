@@ -56,7 +56,7 @@ export class DealPipelineComponent implements OnInit {
   }
 
   loadDeals(): void {
-    // Sample data with at least one WON deal
+    // Sample data with deals in all stages
     this.allDeals = [
       {
         id: '1',
@@ -100,7 +100,6 @@ export class DealPipelineComponent implements OnInit {
         phone: '+91 9876543212',
         email: 'amit@phoenixmalls.com'
       },
-      // ✅ ADDED: Won deal to test conversion
       {
         id: '4',
         title: 'Sunrise Mall',
@@ -114,6 +113,34 @@ export class DealPipelineComponent implements OnInit {
         contactPerson: 'John Smith',
         phone: '+91 9876543215',
         email: 'john@sunrisemall.com'
+      },
+      {
+        id: '5',
+        title: 'Budget Housing Project',
+        company: 'ABC Builders',
+        amount: 1200000,
+        elevatorType: 'Passenger Elevator',
+        probability: 0,
+        closeDate: '2024-09-15',
+        assignedTo: 'Mike Johnson',
+        status: 'lost',
+        contactPerson: 'Ramesh Kumar',
+        phone: '+91 9876543213',
+        email: 'ramesh@abc.com'
+      },
+      {
+        id: '6',
+        title: 'Residential Tower Project',
+        company: 'Skyline Developers',
+        amount: 3500000,
+        elevatorType: 'Passenger Elevator',
+        probability: 25,
+        closeDate: '2025-02-10',
+        assignedTo: 'Priya Sharma',
+        status: 'lead',
+        contactPerson: 'Vijay Singh',
+        phone: '+91 9876543214',
+        email: 'vijay@skyline.com'
       }
     ];
 
@@ -173,13 +200,13 @@ export class DealPipelineComponent implements OnInit {
     }
   }
 
-  // ✅ FIXED: Convert Deal to Project with correct state key
+  // Convert Deal to Project
   convertToProject(deal: Deal): void {
     console.log('Converting deal to project:', deal);
     
     this.router.navigate(['/projects/create'], { 
       state: { 
-        deal: {  // ✅ Changed from 'dealData' to 'deal'
+        deal: {
           id: deal.id,
           title: deal.title,
           company: deal.company,
@@ -193,11 +220,10 @@ export class DealPipelineComponent implements OnInit {
     });
   }
 
-  // View Deal Details
+  // ✅ UPDATED: View Deal Details - Navigation enabled
   viewDealDetails(deal: Deal): void {
     console.log('Viewing deal:', deal);
-    // Implement navigation to deal details page
-    // this.router.navigate(['/deals', deal.id]);
+    this.router.navigate(['/deals', deal.id]);
   }
 
   // Utility Methods
